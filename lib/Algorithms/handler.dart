@@ -6,20 +6,19 @@ import 'package:security_scaner/Algorithms/shellExecuter.dart';
 String url = 'http://localhost:9010';
   http.Response response;
   String responseBody = '';
-  //List<String> responseBodyList = new List();
   bool isRestarted = true;
   ThemeData themeData ;
-  //var shell = Shell();
-  //List<Color> col_text = new List();
-  //List<Color> col_indicator = new List();
-  //Map<String, int> count_section = {"POST" : 0, "GET" : 0, "OPTIONS" : 0, "ALL" : 0};
 
 class Handler {
 
-    Future<void> getLogs(List<Color> col_text, List<Color> col_indicator, Map<String, int> count_section, List<String> responseBodyList, BuildContext context) async{ //TODO: write logs to the local txt file and be able to send it.
+    Future<void> getLogs(List<Color> col_text, List<Color> col_indicator, Map<String, int> count_section, List<String> responseBodyList, bool isConnected, BuildContext context) async{ //TODO: write logs to the local txt file and be able to send it.
     themeData = Theme.of(context);
-    response = await http.get(url);
+    if(isConnected){
+    response =  await http.get(url);
       responseBody = response.body;
+    }else {
+      responseBody = '';
+    }
     fillResponseList(col_text, col_indicator, count_section, responseBodyList);
   }
 
@@ -149,13 +148,14 @@ class Handler {
     //TODO: handle other requests
   }
 
-  Future<void> clearAll(List<Color> col_text, List<Color> col_indicator, Map<String, int> count_section, List<String> responseBodyList) async{
+  Future<void> clearAll(List<Color> col_text, List<Color> col_indicator, Map<String, int> count_section, List<String> responseBodyList, bool isConnected) async{
     col_text.clear();
     col_indicator.clear();
     count_section.clear();
     responseBodyList.clear();
+    if(isConnected){
     await ShellExecuter().stopServer();
     await ShellExecuter().startServer();
-    await ShellExecuter().connectToProxy();
+    }
   }
 }

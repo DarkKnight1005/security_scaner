@@ -1,1 +1,1 @@
-node AnyProxy/bin/anyproxy --intercept --port 8090
+node $PWD/AnyProxy/bin/anyproxy --intercept --port 8090

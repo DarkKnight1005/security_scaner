@@ -1,6 +1,3 @@
-# touch text.txt
-
-# sudo tcpdump > ./text.txt
 
 networksetup -setwebproxy "Wi-fi" localhost 8090
 networksetup -setsecurewebproxy "Wi-fi" localhost 8090

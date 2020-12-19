@@ -28,18 +28,20 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isButtonPressed = false;
   Map<String, int> count_section = {"POST" : 0, "GET" : 0, "OPTIONS" : 0, "ALL" : 0};
   bool isProccessing = false;
+  bool isConnected = false;
   
   var state = FlutterVpnState.disconnected;
   var charonState = CharonErrorState.NO_ERROR;
   ScrollController _scrollController;
 
-  String vpn_host = 'localhost';
-  String vpn_port = '8090';
+  // String vpn_host = 'localhost';
+  // String vpn_port = '8090';
 
   @override
-  void initState() {
+  void initState(){
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollJump);
+    checkIsServerUp();
     //_scrollController.addListener(_scrollCurve);
     FlutterVpn.prepare();
     FlutterVpn.onStateChanged.listen((s) => setState(() => state = s));
@@ -51,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _scrollController.dispose();
     super.dispose();
   }
+
 
   _scrollJump() {
     if(isButtonPressed){
@@ -65,7 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
     _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
  }
 
-
+  Future<void> checkIsServerUp() async{
+    isConnected = await ShellExecuter().checkIsServerUp();
+    setState(() {
+    });
+  }
 
   bool getCond(String _response){
     switch (filter) {
@@ -91,8 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
           count_section["OPTIONS"] = 0;
           count_section["ALL"] = 0;
           isProccessing = true;
+          //isConnected = true;
         });
-        await Handler().getLogs(col_text, col_indicator, count_section, responseBodyList, _context);
+        await Handler().getLogs(col_text, col_indicator, count_section, responseBodyList, isConnected,_context);
         setState(() {
           isProccessing = false;
         });
@@ -117,8 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
        child: Column(
               children: [
-                Text(state.index.toString()),
-                Text(charonState.index.toString()),
+                Text("IsConnected: " + isConnected.toString()),
+                //Text(charonState.index.toString()),
+                SizedBox(height: 12,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -131,11 +140,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 10,),
                 Row(
+                 // alignment: WrapAlignment.spaceBetween,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     RaisedButton(
                       child: Text('Connect'),
-                      onPressed: () async {
+                      onPressed: isConnected ? null : () async {
                         setState(() {
                           isProccessing = true;
                         });
@@ -143,12 +153,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         await ShellExecuter().connectToProxy();
                         setState(() {
                           isProccessing = false;
+                          isConnected = true;
                         });                    
                       },
                     ),
                     RaisedButton(
                       child: Text('Disconnect'),
-                      onPressed: () async {
+                      onPressed: !isConnected ? null : () async {
                         setState(() {
                           isProccessing = true;
                         });
@@ -156,6 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         await ShellExecuter().disconnectFromProxy();                        
                         setState(() {
                           isProccessing = false;
+                          isConnected = false;
                         });
                       },
                     ),
@@ -175,20 +187,32 @@ class _HomeScreenState extends State<HomeScreen> {
                         setState(() {
                           isProccessing = true;
                         });
-                        await Handler().clearAll(col_text, col_indicator, count_section, responseBodyList);
+                        await Handler().clearAll(col_text, col_indicator, count_section, responseBodyList, isConnected);
                         setState(() {
                           isProccessing = false;
                         });
                       },
                     ),
+                    // RaisedButton(
+                    //   child: Text('Test'),
+                    //   onPressed: () async {
+                    //     setState(() {
+                    //       isProccessing = true;
+                    //     });
+                    //     await ShellExecuter().testFunc();
+                    //     setState(() {
+                    //       isProccessing = false;
+                    //     });
+                    //   },
+                    // ),
                   ],
                 ),
                 SizedBox(height: 10),
                 isProccessing ? CircularProgressIndicator() : Container(),
                 SizedBox(height: 10),
-              Container(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height*0.8,
+              Expanded(
+                //width: double.infinity,
+                //height: MediaQuery.of(context).size.height*0.8,
                 child: ListView.builder(
                   //reverse: true,
                   controller: _scrollController,
@@ -210,7 +234,6 @@ class _HomeScreenState extends State<HomeScreen> {
                  },
                 ),
               ),
-                //Text(response != null ? response.body : ''),
               ],
            ),
       )
