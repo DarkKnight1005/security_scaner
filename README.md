@@ -2,6 +2,8 @@
 
 An app for scanning other apps for privacy vulnerabilities.
 
+<img src="https://github.com/DarkKnight1005/security_scaner/blob/master/assets/logo.png?raw=true" alt="drawing" width="350"/>
+
 Link to the official publications on the ResearchGate portal: https://www.researchgate.net/publication/347977433_Security_and_Privacy_concepts_methodologies_and_suggestions_for_personal_data_to_analyze_and_check_installed_apps_on_our_mobile_devices_how_are_they_secure_and_do_they_send_users%27_personal_data_to_som?channel=doi&linkId=5feb26bf92851c13fed05dbc&showFulltext=true
 
 ## Note: only MacOS for Desktops and Android OS for mobile phones are currently supported
