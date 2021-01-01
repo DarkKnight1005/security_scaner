@@ -172,6 +172,32 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     RaisedButton(
+                      child: Text('StartMobile'),
+                      onPressed: isConnected ? null : () async {
+                        setState(() {
+                          isProccessing = true;
+                        });
+                        await ShellExecuter().startServer();
+                        setState(() {
+                          isProccessing = false;
+                          isConnected = true;
+                        });                    
+                      },
+                    ),
+                    RaisedButton(
+                      child: Text('StopMobile'),
+                      onPressed: !isConnected ? null : () async {
+                        setState(() {
+                          isProccessing = true;
+                        });
+                        await ShellExecuter().stopServer();
+                        setState(() {
+                          isProccessing = false;
+                          isConnected = false;
+                        });
+                      },
+                    ),
+                    RaisedButton(
                       child: Text('Down'),
                       onPressed: () async {
                         setState(() {
