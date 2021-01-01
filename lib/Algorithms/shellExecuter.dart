@@ -48,6 +48,13 @@ class ShellExecuter {
       return isUp;
   }
 
+  Future<String> getLocalIPAdress() async {
+    //String strPath = await _loadAsset("sh Scripts/proxy_node_star.sh");
+    String _localIPAdsress;
+    await shell.run("sh ${Directory.current.path}/scripts/grep_IP_address.sh").then((value) => _localIPAdsress = value.outText);
+    return _localIPAdsress;
+  }
+
 
   Future<void> testFunc() async {
     // await rootBundle.loadStructuredData("Scripts/proxy_node_stop.sh", (value) async{

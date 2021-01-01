@@ -38,6 +38,7 @@ dependencies:
   fluttericon: ^1.0.7
   process_run: ^0.11.2+1
   desktop_window: ^0.3.0
+  flutter_ip: ^0.2.0
   
 dev_dependencies:
   flutter_test:

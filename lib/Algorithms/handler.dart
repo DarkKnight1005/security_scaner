@@ -3,22 +3,25 @@ import 'package:http/http.dart' as http;
 import 'package:process_run/shell.dart';
 import 'package:security_scaner/Algorithms/shellExecuter.dart';
 
-String url = 'http://localhost:9010';
+// String url = 'http://localhost:9010';
   http.Response response;
   String responseBody = '';
   bool isRestarted = true;
   ThemeData themeData ;
 
 class Handler {
+    String url;
+    Handler({@required this.url});
 
     Future<void> getLogs(List<Color> col_text, List<Color> col_indicator, Map<String, int> count_section, List<String> responseBodyList, bool isConnected, BuildContext context) async{ //TODO: write logs to the local txt file and be able to send it.
     themeData = Theme.of(context);
-    if(isConnected){
+    //TODO: Check it
+    //if(isConnected){
     response =  await http.get(url);
-      responseBody = response.body;
-    }else {
-      responseBody = '';
-    }
+    responseBody = response.body;
+    //}else {
+      //responseBody = '';
+    //}
     fillResponseList(col_text, col_indicator, count_section, responseBodyList);
   }
 
