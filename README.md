@@ -113,7 +113,7 @@ After all this steps everything is ready. You can now surf in the internet and a
 
 NOTE: By default realtime update and push notifications are disabled. In order to see the traffic, just every time tap the `All` button, then programm will refresh captured internet traffic.
 
-#### Troubleshooting
+## Troubleshooting
 
 For now troubleshooting is now supported in this documentation. If there are any questions please do not hesitate to contact with men via
 ```
