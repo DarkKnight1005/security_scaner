@@ -116,8 +116,11 @@ NOTE: By default realtime update and push notifications are disabled. In order t
 #### Troubleshooting
 
 For now troubleshooting is now supported in this documentation. If there are any questions please do not hesitate to contact with men via
+```
 Email: ayaz.panahov.std@bhos.edu.az
 Phone: +994507935935
+```
+-
 --------------------------------------------------------------------
 Made by Ayaz Panahov.
 Copyright (c) 2020 HyandrDos Inc. All rights reserved.
