@@ -27,7 +27,6 @@ flutter config --enable-macos-desktop
 
 Here is an offical insrtuction how to download the NodeJS https://nodejs.org/en/download/ LTS version is recommended
 
-
 ### Installing Adnroid SDK Tools
 
 Here is an offical insrtuction how to download the Adnroid Studio and Android SDK https://developer.android.com/studio
