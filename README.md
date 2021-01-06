@@ -130,4 +130,4 @@ WhatsApp: +994507935935
 -
 --------------------------------------------------------------------
 Made by Ayaz Panahov.
-Copyright (c) 2020 HyandrDos Inc. All rights reserved.
+Copyright (c) 2021 HyandrDos Inc. All rights reserved.
