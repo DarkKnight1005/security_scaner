@@ -8,6 +8,8 @@ Link to the official publications on the ResearchGate portal: https://www.resear
 
 ## Note: only MacOS for Desktops and Android OS for mobile phones are currently supported
 
+## Note: Please do not use the emulator, use the phisical device instead.
+
 ## Before Downloading the Project
 
 ### Installing Flutter SDK
@@ -34,6 +36,10 @@ Here is an official insrtuction how to download the NodeJS https://nodejs.org/en
 Here is an offical insrtuction how to download the Adnroid Studio and Android SDK https://developer.android.com/studio
 
 After installing be sure that Flutter and NodeJS in the Path. Android SDK tools probably will not be in the Path by default, and because of that fact it will be some times required to locate to the SDK folder or SDK can be moved to the math manually.
+
+### Installing Xcode
+
+For MacOS build Xcode 12 is required. It can be easily downloaded from the AppStore for Mac
 
 ## Installing the Project
 
