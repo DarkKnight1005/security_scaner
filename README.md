@@ -70,7 +70,7 @@ This project using AnyProxy for the proxy side. Now the Certificate must be trus
 ```
 ./anyproxy-ca 
 ```
-After that do the required things to generate the Certificate. Then locate to the relevant folder with the generated certificate and double click to the `rootCA.crt`. After that KeyChain will open. Double-click to the `AnyProxy` certificate in the KeyCahin and properties window will pop up. Find `Trust`, click and expand it and change When using this certificate from Use System Defaults to `Always Trust`. Run `./anyproxy-ca` to be sure that that certificate is trusted.
+After that do the required things to generate the Certificate. Then locate to the relevant folder with the generated certificate and double click to the `rootCA.crt`. After that KeyChain will open. Double-click to the `AnyProxy` certificate in the KeyCahin and properties window will pop up. Find `Trust`, click and expand it and change When using this certificate from Use System Defaults to `Always Trust`. Run `./anyproxy-ca` to be sure that certificate is trusted.
 
 ## Building app
 
